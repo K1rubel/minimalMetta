@@ -1,4 +1,4 @@
-
+!(pragma! interpreter bare-minimal)
 (= (div $x $y $accum)
    (chain (eval (- $x $y)) $r1
      (chain (eval (< $r1 0)) $r2
@@ -79,3 +79,12 @@
 ; ! (eval (takeN (1 2 3) 1 ()))         
 ; ! (eval (takeN (1 2 3) 2 ()))         
 ; ! (eval (takeN (1 2 3) 4 ()))         
+
+;; assertEqual for minimal metta
+(= (minialAssertEqual $f $val)
+    (function 
+        (eval (chain (eval $f) $r 
+            (eval (if-equal $r $val
+                (return ())
+                (return (Error $r assertionError))))))))
+; ! (eval (assertMinialEqual (len ()) 1))               
