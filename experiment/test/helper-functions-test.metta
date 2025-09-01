@@ -1,4 +1,4 @@
 ! (register-module! ../../../minimalMetta)
 ! (import! &self minimalMetta:experiment:helper-functions)
 
-! (assertEqual (len ()) 0)
+! (eval (minialAssertEqual (len ()) 0))
